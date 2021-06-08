@@ -1,0 +1,21 @@
+2021-06-08 15:22:40,682 - main - logger.py - [line:55] - DEBUG -> 这是 vlog 模块测试内容1
+2021-06-08 15:22:40,682 - main - logger.py - [line:56] - INFO -> 这是 vlog 模块测试内容2
+2021-06-08 15:22:40,682 - main - logger.py - [line:57] - WARNING -> 这是 vlog 模块测试内容3
+2021-06-08 15:22:40,682 - main - logger.py - [line:58] - ERROR -> 这是 vlog 模块测试内容4
+2021-06-08 15:22:40,683 - main - logger.py - [line:59] - CRITICAL -> 这是 vlog 模块测试内容5
+2021-06-08 15:23:17,949 - Mario - logger.py - [line:55] - DEBUG -> 这是 vlog 模块测试内容1
+2021-06-08 15:23:17,950 - Mario - logger.py - [line:56] - INFO -> 这是 vlog 模块测试内容2
+2021-06-08 15:23:17,950 - Mario - logger.py - [line:57] - WARNING -> 这是 vlog 模块测试内容3
+2021-06-08 15:23:17,950 - Mario - logger.py - [line:58] - ERROR -> 这是 vlog 模块测试内容4
+2021-06-08 15:23:17,950 - Mario - logger.py - [line:59] - CRITICAL -> 这是 vlog 模块测试内容5
+2021-06-08 15:39:33,815 - Mario - logger.py - [line:54] - DEBUG -> 这是 vlog 模块测试内容1
+2021-06-08 15:39:33,815 - Mario - logger.py - [line:55] - INFO -> 这是 vlog 模块测试内容2
+2021-06-08 15:39:33,815 - Mario - logger.py - [line:56] - WARNING -> 这是 vlog 模块测试内容3
+2021-06-08 15:39:33,815 - Mario - logger.py - [line:57] - ERROR -> 这是 vlog 模块测试内容4
+2021-06-08 15:39:33,815 - Mario - logger.py - [line:58] - CRITICAL -> 这是 vlog 模块测试内容5
+2021-06-08 16:01:49,346 - Mario - test.py - [line:12] - INFO -> ceshi
+2021-06-08 16:02:33,561 - Mario - test.py - [line:12] - DEBUG -> 这是 vlog 模块测试内容1
+2021-06-08 16:02:33,562 - Mario - test.py - [line:13] - INFO -> 这是 vlog 模块测试内容2
+2021-06-08 16:02:33,562 - Mario - test.py - [line:14] - WARNING -> 这是 vlog 模块测试内容3
+2021-06-08 16:02:33,563 - Mario - test.py - [line:15] - ERROR -> 这是 vlog 模块测试内容4
+2021-06-08 16:02:33,563 - Mario - test.py - [line:16] - CRITICAL -> 这是 vlog 模块测试内容5
