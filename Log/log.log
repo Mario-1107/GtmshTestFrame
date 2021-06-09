@@ -19,3 +19,246 @@
 2021-06-08 16:02:33,562 - Mario - test.py - [line:14] - WARNING -> 这是 vlog 模块测试内容3
 2021-06-08 16:02:33,563 - Mario - test.py - [line:15] - ERROR -> 这是 vlog 模块测试内容4
 2021-06-08 16:02:33,563 - Mario - test.py - [line:16] - CRITICAL -> 这是 vlog 模块测试内容5
+2021-06-08 17:11:58,095 - Mario - logger.py - [line:52] - DEBUG -> 这是 log 模块测试内容1
+2021-06-08 17:11:58,096 - Mario - logger.py - [line:53] - INFO -> 这是 log 模块测试内容2
+2021-06-08 17:11:58,096 - Mario - logger.py - [line:54] - WARNING -> 这是 log 模块测试内容3
+2021-06-08 17:11:58,096 - Mario - logger.py - [line:55] - ERROR -> 这是 log 模块测试内容4
+2021-06-08 17:11:58,096 - Mario - logger.py - [line:56] - CRITICAL -> 这是 log 模块测试内容5
+2021-06-08 17:54:15,854 - Mario - emailer.py - [line:31] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-08 17:54:15,855 - Mario - emailer.py - [line:45] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-08 17:54:15,855 - Mario - emailer.py - [line:79] - INFO -> 邮件内容组装完成～
+2021-06-08 17:54:15,855 - Mario - emailer.py - [line:80] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-08 17:54:15,855 - Mario - emailer.py - [line:39] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-08 17:54:15,855 - Mario - emailer.py - [line:105] - INFO -> ************************* Emailer.send_email(发送邮件) *************************
+2021-06-08 17:56:51,320 - Mario - emailer.py - [line:31] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-08 17:56:51,320 - Mario - emailer.py - [line:45] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-08 17:56:51,321 - Mario - emailer.py - [line:79] - INFO -> 邮件内容组装完成～
+2021-06-08 17:56:51,321 - Mario - emailer.py - [line:80] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-08 17:56:51,321 - Mario - emailer.py - [line:39] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-08 17:56:51,321 - Mario - emailer.py - [line:105] - INFO -> ************************* Emailer.send_email(发送邮件) *************************
+2021-06-08 17:56:51,542 - Mario - emailer.py - [line:109] - INFO -> 连接邮箱成功～host:smtp.qq.com,port:465
+2021-06-08 17:56:51,542 - Mario - emailer.py - [line:128] - INFO -> 正在关闭邮箱连接～
+2021-06-08 17:57:41,242 - Mario - emailer.py - [line:31] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-08 17:57:41,243 - Mario - emailer.py - [line:45] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-08 17:57:41,243 - Mario - emailer.py - [line:79] - INFO -> 邮件内容组装完成～
+2021-06-08 17:57:41,243 - Mario - emailer.py - [line:80] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-08 17:57:41,243 - Mario - emailer.py - [line:39] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-08 17:57:41,243 - Mario - emailer.py - [line:105] - INFO -> ************************* Emailer.send_email(发送邮件) *************************
+2021-06-08 17:57:41,297 - Mario - emailer.py - [line:109] - INFO -> 连接邮箱成功～host:smtp.qq.com,port:465
+2021-06-08 17:57:41,656 - Mario - emailer.py - [line:117] - INFO -> 登陆邮箱成功～  登陆用户名：mikuya_9@qq.com
+2021-06-08 17:57:41,761 - Mario - emailer.py - [line:125] - ERROR -> 发送邮件失败！
+Traceback (most recent call last):
+  File "/Users/air/PycharmProjects/GtmshTestFrame/Comm/emailer.py", line 118, in send_email
+    conn.sendmail(email_cfg['sender'], email_cfg['receivers'], self.message.as_string())
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/smtplib.py", line 885, in sendmail
+    raise SMTPRecipientsRefused(senderrs)
+smtplib.SMTPRecipientsRefused: {'-zhongyun@gtmsh.com -xxx@gtmsh.com': (501, b'Bad address syntax. http://service.mail.qq.com/cgi-bin/help?subtype=1&&id=20022&&no=1000730')}
+2021-06-08 17:57:41,764 - Mario - emailer.py - [line:128] - INFO -> 正在关闭邮箱连接～
+2021-06-08 17:57:41,764 - Mario - emailer.py - [line:129] - INFO -> ************************* Emailer.send_email(发送邮件) *************************
+2021-06-08 18:01:47,544 - Mario - emailer.py - [line:31] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-08 18:01:47,544 - Mario - emailer.py - [line:45] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-08 18:01:47,544 - Mario - emailer.py - [line:79] - INFO -> 邮件内容组装完成～
+2021-06-08 18:01:47,545 - Mario - emailer.py - [line:80] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-08 18:01:47,545 - Mario - emailer.py - [line:39] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-08 18:01:47,545 - Mario - emailer.py - [line:105] - INFO -> ************************* Emailer.send_email(发送邮件) *************************
+2021-06-08 18:01:47,779 - Mario - emailer.py - [line:109] - INFO -> 连接邮箱成功～host:smtp.qq.com,port:465
+2021-06-08 18:01:47,924 - Mario - emailer.py - [line:117] - INFO -> 登陆邮箱成功～  登陆用户名：mikuya_9@qq.com
+2021-06-08 18:01:48,232 - Mario - emailer.py - [line:125] - ERROR -> 发送邮件失败！
+Traceback (most recent call last):
+  File "/Users/air/PycharmProjects/GtmshTestFrame/Comm/emailer.py", line 118, in send_email
+    conn.sendmail(email_cfg['sender'], email_cfg['receivers'], self.message.as_string())
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/smtplib.py", line 885, in sendmail
+    raise SMTPRecipientsRefused(senderrs)
+smtplib.SMTPRecipientsRefused: {'-zhongyun@gtmsh.com -xxx@gtmsh.com': (501, b'Bad address syntax. http://service.mail.qq.com/cgi-bin/help?subtype=1&&id=20022&&no=1000730')}
+2021-06-08 18:01:48,233 - Mario - emailer.py - [line:128] - INFO -> 正在关闭邮箱连接～
+2021-06-08 18:01:48,233 - Mario - emailer.py - [line:129] - INFO -> ************************* Emailer.send_email(发送邮件) *************************
+2021-06-08 18:02:55,518 - Mario - emailer.py - [line:31] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-08 18:02:55,518 - Mario - emailer.py - [line:45] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-08 18:02:55,519 - Mario - emailer.py - [line:79] - INFO -> 邮件内容组装完成～
+2021-06-08 18:02:55,519 - Mario - emailer.py - [line:80] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-08 18:02:55,519 - Mario - emailer.py - [line:39] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-08 18:02:55,519 - Mario - emailer.py - [line:105] - INFO -> ************************* Emailer.send_email(发送邮件) *************************
+2021-06-08 18:02:55,565 - Mario - emailer.py - [line:109] - INFO -> 连接邮箱成功～host:smtp.qq.com,port:465
+2021-06-08 18:02:55,688 - Mario - emailer.py - [line:117] - INFO -> 登陆邮箱成功～  登陆用户名：mikuya_9@qq.com
+2021-06-08 18:02:55,689 - Mario - emailer.py - [line:128] - INFO -> 正在关闭邮箱连接～
+2021-06-08 18:03:33,428 - Mario - emailer.py - [line:31] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-08 18:03:33,428 - Mario - emailer.py - [line:45] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-08 18:03:33,428 - Mario - emailer.py - [line:79] - INFO -> 邮件内容组装完成～
+2021-06-08 18:03:33,429 - Mario - emailer.py - [line:80] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-08 18:03:33,429 - Mario - emailer.py - [line:39] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-08 18:03:33,429 - Mario - emailer.py - [line:105] - INFO -> ************************* Emailer.send_email(发送邮件) *************************
+2021-06-08 18:03:33,489 - Mario - emailer.py - [line:109] - INFO -> 连接邮箱成功～host:smtp.qq.com,port:465
+2021-06-08 18:03:33,599 - Mario - emailer.py - [line:117] - INFO -> 登陆邮箱成功～  登陆用户名：mikuya_9@qq.com
+2021-06-08 18:03:33,601 - Mario - emailer.py - [line:128] - INFO -> 正在关闭邮箱连接～
+2021-06-08 18:03:41,827 - Mario - emailer.py - [line:31] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-08 18:03:41,828 - Mario - emailer.py - [line:45] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-08 18:03:41,828 - Mario - emailer.py - [line:79] - INFO -> 邮件内容组装完成～
+2021-06-08 18:03:41,828 - Mario - emailer.py - [line:80] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-08 18:03:41,828 - Mario - emailer.py - [line:39] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-08 18:03:41,828 - Mario - emailer.py - [line:105] - INFO -> ************************* Emailer.send_email(发送邮件) *************************
+2021-06-08 18:03:41,891 - Mario - emailer.py - [line:109] - INFO -> 连接邮箱成功～host:smtp.qq.com,port:465
+2021-06-08 18:03:42,017 - Mario - emailer.py - [line:117] - INFO -> 登陆邮箱成功～  登陆用户名：mikuya_9@qq.com
+2021-06-08 18:03:42,577 - Mario - emailer.py - [line:119] - INFO -> 获取发件人信息成功：mikuya_9@qq.com,获取收件人成功:zhongyun@gtmsh.com
+2021-06-08 18:03:42,578 - Mario - emailer.py - [line:128] - INFO -> 正在关闭邮箱连接～
+2021-06-08 18:03:42,578 - Mario - emailer.py - [line:129] - INFO -> ************************* Emailer.send_email(发送邮件) *************************
+2021-06-08 18:05:45,068 - Mario - emailer.py - [line:31] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-08 18:05:45,071 - Mario - emailer.py - [line:45] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-08 18:05:45,072 - Mario - emailer.py - [line:88] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-08 18:05:45,074 - Mario - emailer.py - [line:95] - INFO -> 附件处理完成～
+2021-06-08 18:05:45,074 - Mario - emailer.py - [line:98] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-08 18:05:45,074 - Mario - emailer.py - [line:79] - INFO -> 邮件内容组装完成～
+2021-06-08 18:05:45,075 - Mario - emailer.py - [line:80] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-08 18:05:45,075 - Mario - emailer.py - [line:39] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-08 18:05:45,076 - Mario - emailer.py - [line:105] - INFO -> ************************* Emailer.send_email(发送邮件) *************************
+2021-06-08 18:05:45,337 - Mario - emailer.py - [line:109] - INFO -> 连接邮箱成功～host:smtp.qq.com,port:465
+2021-06-08 18:05:45,449 - Mario - emailer.py - [line:117] - INFO -> 登陆邮箱成功～  登陆用户名：mikuya_9@qq.com
+2021-06-08 18:05:45,864 - Mario - emailer.py - [line:119] - INFO -> 获取发件人信息成功：mikuya_9@qq.com,获取收件人成功:zhongyun@gtmsh.com
+2021-06-08 18:05:45,864 - Mario - emailer.py - [line:120] - INFO -> 邮件发送成功～
+2021-06-08 18:05:45,864 - Mario - emailer.py - [line:129] - INFO -> 正在关闭邮箱连接～
+2021-06-08 18:05:45,864 - Mario - emailer.py - [line:130] - INFO -> ************************* Emailer.send_email(发送邮件) *************************
+2021-06-08 19:35:33,714 - Mario - emailer.py - [line:31] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-08 19:35:33,716 - Mario - emailer.py - [line:45] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-08 19:35:33,717 - Mario - emailer.py - [line:79] - INFO -> 邮件内容组装完成～
+2021-06-08 19:35:33,717 - Mario - emailer.py - [line:80] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-08 19:35:33,717 - Mario - emailer.py - [line:39] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-08 19:35:33,718 - Mario - emailer.py - [line:105] - INFO -> ************************* Emailer.send_email(发送邮件) *************************
+2021-06-08 19:35:34,037 - Mario - emailer.py - [line:109] - INFO -> 连接邮箱成功～host:smtp.qq.com,port:465
+2021-06-08 19:35:34,173 - Mario - emailer.py - [line:117] - INFO -> 登陆邮箱成功～  登陆用户名：mikuya_9@qq.com
+2021-06-08 19:35:34,556 - Mario - emailer.py - [line:119] - INFO -> 获取发件人信息成功：mikuya_9@qq.com,获取收件人成功:zhongyun@gtmsh.com
+2021-06-08 19:35:34,556 - Mario - emailer.py - [line:120] - INFO -> 邮件发送成功～
+2021-06-08 19:35:34,556 - Mario - emailer.py - [line:129] - INFO -> 正在关闭邮箱连接～
+2021-06-08 19:35:34,556 - Mario - emailer.py - [line:130] - INFO -> ************************* Emailer.send_email(发送邮件) *************************
+2021-06-08 19:37:29,414 - Mario - emailer.py - [line:31] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-08 19:37:29,414 - Mario - emailer.py - [line:45] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-08 19:37:29,414 - Mario - emailer.py - [line:88] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-08 19:37:29,415 - Mario - emailer.py - [line:95] - INFO -> 附件处理完成～
+2021-06-08 19:37:29,415 - Mario - emailer.py - [line:98] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-08 19:37:29,415 - Mario - emailer.py - [line:88] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-08 19:37:29,415 - Mario - emailer.py - [line:95] - INFO -> 附件处理完成～
+2021-06-08 19:37:29,416 - Mario - emailer.py - [line:98] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-08 19:37:29,416 - Mario - emailer.py - [line:79] - INFO -> 邮件内容组装完成～
+2021-06-08 19:37:29,416 - Mario - emailer.py - [line:80] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-08 19:37:29,416 - Mario - emailer.py - [line:39] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-08 19:37:29,416 - Mario - emailer.py - [line:105] - INFO -> ************************* Emailer.send_email(发送邮件) *************************
+2021-06-08 19:37:29,487 - Mario - emailer.py - [line:109] - INFO -> 连接邮箱成功～host:smtp.qq.com,port:465
+2021-06-08 19:37:29,628 - Mario - emailer.py - [line:117] - INFO -> 登陆邮箱成功～  登陆用户名：mikuya_9@qq.com
+2021-06-08 19:37:30,118 - Mario - emailer.py - [line:119] - INFO -> 获取发件人信息成功：mikuya_9@qq.com,获取收件人成功:zhongyun@gtmsh.com
+2021-06-08 19:37:30,118 - Mario - emailer.py - [line:120] - INFO -> 邮件发送成功～
+2021-06-08 19:37:30,118 - Mario - emailer.py - [line:129] - INFO -> 正在关闭邮箱连接～
+2021-06-08 19:37:30,118 - Mario - emailer.py - [line:130] - INFO -> ************************* Emailer.send_email(发送邮件) *************************
+2021-06-09 09:49:22,465 - Mario - emailer.py - [line:32] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-09 09:49:22,466 - Mario - emailer.py - [line:46] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-09 09:49:22,466 - Mario - emailer.py - [line:89] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-09 09:49:22,467 - Mario - emailer.py - [line:96] - INFO -> 附件处理完成～
+2021-06-09 09:49:22,467 - Mario - emailer.py - [line:99] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-09 09:49:22,467 - Mario - emailer.py - [line:89] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-09 09:49:22,469 - Mario - emailer.py - [line:96] - INFO -> 附件处理完成～
+2021-06-09 09:49:22,469 - Mario - emailer.py - [line:99] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-09 09:49:22,469 - Mario - emailer.py - [line:80] - INFO -> 邮件内容组装完成～
+2021-06-09 09:49:22,469 - Mario - emailer.py - [line:81] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-09 09:49:22,469 - Mario - emailer.py - [line:40] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-09 09:49:22,469 - Mario - emailer.py - [line:106] - INFO -> ************************* Emailer.send_email(发送邮件) *************************
+2021-06-09 09:49:23,428 - Mario - emailer.py - [line:110] - INFO -> 连接邮箱成功～host:smtp.qq.com,port:465
+2021-06-09 09:49:23,554 - Mario - emailer.py - [line:118] - INFO -> 登陆邮箱成功～  登陆用户名：mikuya_9@qq.com
+2021-06-09 09:49:23,557 - Mario - emailer.py - [line:130] - INFO -> 正在关闭邮箱连接～
+2021-06-09 09:53:30,753 - Mario - emailer.py - [line:32] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-09 09:53:30,753 - Mario - emailer.py - [line:46] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-09 09:53:30,754 - Mario - emailer.py - [line:89] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-09 09:53:30,754 - Mario - emailer.py - [line:96] - INFO -> 附件处理完成～
+2021-06-09 09:53:30,754 - Mario - emailer.py - [line:99] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-09 09:53:30,754 - Mario - emailer.py - [line:89] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-09 09:53:30,755 - Mario - emailer.py - [line:96] - INFO -> 附件处理完成～
+2021-06-09 09:53:30,755 - Mario - emailer.py - [line:99] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-09 09:53:30,755 - Mario - emailer.py - [line:80] - INFO -> 邮件内容组装完成～
+2021-06-09 09:53:30,755 - Mario - emailer.py - [line:81] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-09 09:53:30,756 - Mario - emailer.py - [line:40] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-09 09:53:30,756 - Mario - emailer.py - [line:106] - INFO -> ************************* Emailer.send_email(发送邮件) *************************
+2021-06-09 09:53:34,851 - Mario - emailer.py - [line:110] - INFO -> 连接邮箱成功～host:smtp.qq.com,port:465
+2021-06-09 09:53:34,996 - Mario - emailer.py - [line:118] - INFO -> 登陆邮箱成功～  登陆用户名：mikuya_9@qq.com
+2021-06-09 09:53:35,094 - Mario - emailer.py - [line:127] - ERROR -> 发送邮件失败！
+Traceback (most recent call last):
+  File "/Users/air/PycharmProjects/GtmshTestFrame/Comm/emailer.py", line 119, in send_email
+    conn.sendmail(email_cfg['sender'], email_cfg['receivers'], self.message.as_string())
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/smtplib.py", line 885, in sendmail
+    raise SMTPRecipientsRefused(senderrs)
+smtplib.SMTPRecipientsRefused: {'-zhongyun@gtmsh.com -xiangpengfei@gtmsh.com': (501, b'Bad address syntax. http://service.mail.qq.com/cgi-bin/help?subtype=1&&id=20022&&no=1000730')}
+2021-06-09 09:53:35,096 - Mario - emailer.py - [line:130] - INFO -> 正在关闭邮箱连接～
+2021-06-09 09:53:35,097 - Mario - emailer.py - [line:131] - INFO -> ************************* Emailer.send_email(发送邮件) *************************
+2021-06-09 09:57:54,655 - Mario - emailer.py - [line:32] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-09 09:57:54,655 - Mario - emailer.py - [line:46] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-09 09:57:54,656 - Mario - emailer.py - [line:89] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-09 09:57:54,656 - Mario - emailer.py - [line:96] - INFO -> 附件处理完成～
+2021-06-09 09:57:54,656 - Mario - emailer.py - [line:99] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-09 09:57:54,656 - Mario - emailer.py - [line:89] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-09 09:57:54,657 - Mario - emailer.py - [line:96] - INFO -> 附件处理完成～
+2021-06-09 09:57:54,658 - Mario - emailer.py - [line:99] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-09 09:57:54,658 - Mario - emailer.py - [line:80] - INFO -> 邮件内容组装完成～
+2021-06-09 09:57:54,658 - Mario - emailer.py - [line:81] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-09 09:57:54,658 - Mario - emailer.py - [line:40] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-09 09:57:54,658 - Mario - emailer.py - [line:106] - INFO -> ************************* Emailer.send_email(发送邮件) *************************
+2021-06-09 09:57:54,910 - Mario - emailer.py - [line:110] - INFO -> 连接邮箱成功～host:smtp.qq.com,port:465
+2021-06-09 09:57:55,050 - Mario - emailer.py - [line:118] - INFO -> 登陆邮箱成功～  登陆用户名：mikuya_9@qq.com
+2021-06-09 09:57:55,054 - Mario - emailer.py - [line:130] - INFO -> 正在关闭邮箱连接～
+2021-06-09 09:58:41,399 - Mario - emailer.py - [line:32] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-09 09:58:41,400 - Mario - emailer.py - [line:46] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-09 09:58:41,400 - Mario - emailer.py - [line:89] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-09 09:58:41,400 - Mario - emailer.py - [line:96] - INFO -> 附件处理完成～
+2021-06-09 09:58:41,400 - Mario - emailer.py - [line:99] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-09 09:58:41,400 - Mario - emailer.py - [line:89] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-09 09:58:41,401 - Mario - emailer.py - [line:96] - INFO -> 附件处理完成～
+2021-06-09 09:58:41,401 - Mario - emailer.py - [line:99] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-09 09:58:41,401 - Mario - emailer.py - [line:80] - INFO -> 邮件内容组装完成～
+2021-06-09 09:58:41,402 - Mario - emailer.py - [line:81] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-09 09:58:41,402 - Mario - emailer.py - [line:40] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-09 09:58:41,402 - Mario - emailer.py - [line:106] - INFO -> ************************* Emailer.send_email(发送邮件) *************************
+2021-06-09 09:58:41,577 - Mario - emailer.py - [line:110] - INFO -> 连接邮箱成功～host:smtp.qq.com,port:465
+2021-06-09 09:58:41,702 - Mario - emailer.py - [line:118] - INFO -> 登陆邮箱成功～  登陆用户名：mikuya_9@qq.com
+2021-06-09 09:58:41,702 - Mario - emailer.py - [line:130] - INFO -> 正在关闭邮箱连接～
+2021-06-09 09:59:33,913 - Mario - emailer.py - [line:32] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-09 09:59:33,913 - Mario - emailer.py - [line:46] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-09 09:59:33,913 - Mario - emailer.py - [line:89] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-09 09:59:33,914 - Mario - emailer.py - [line:96] - INFO -> 附件处理完成～
+2021-06-09 09:59:33,914 - Mario - emailer.py - [line:99] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-09 09:59:33,914 - Mario - emailer.py - [line:89] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-09 09:59:33,915 - Mario - emailer.py - [line:96] - INFO -> 附件处理完成～
+2021-06-09 09:59:33,915 - Mario - emailer.py - [line:99] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-09 09:59:33,915 - Mario - emailer.py - [line:80] - INFO -> 邮件内容组装完成～
+2021-06-09 09:59:33,915 - Mario - emailer.py - [line:81] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-09 09:59:33,915 - Mario - emailer.py - [line:40] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-09 09:59:33,915 - Mario - emailer.py - [line:106] - INFO -> ************************* Emailer.send_email(发送邮件) *************************
+2021-06-09 09:59:33,977 - Mario - emailer.py - [line:110] - INFO -> 连接邮箱成功～host:smtp.qq.com,port:465
+2021-06-09 09:59:34,121 - Mario - emailer.py - [line:118] - INFO -> 登陆邮箱成功～  登陆用户名：mikuya_9@qq.com
+2021-06-09 09:59:34,125 - Mario - emailer.py - [line:130] - INFO -> 正在关闭邮箱连接～
+2021-06-09 10:00:09,899 - Mario - emailer.py - [line:32] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-09 10:00:09,899 - Mario - emailer.py - [line:46] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-09 10:00:09,900 - Mario - emailer.py - [line:89] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-09 10:00:09,900 - Mario - emailer.py - [line:96] - INFO -> 附件处理完成～
+2021-06-09 10:00:09,900 - Mario - emailer.py - [line:99] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-09 10:00:09,900 - Mario - emailer.py - [line:89] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-09 10:00:09,902 - Mario - emailer.py - [line:96] - INFO -> 附件处理完成～
+2021-06-09 10:00:09,902 - Mario - emailer.py - [line:99] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-09 10:00:09,902 - Mario - emailer.py - [line:80] - INFO -> 邮件内容组装完成～
+2021-06-09 10:00:09,902 - Mario - emailer.py - [line:81] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-09 10:00:09,902 - Mario - emailer.py - [line:40] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-09 10:00:09,902 - Mario - emailer.py - [line:106] - INFO -> ************************* Emailer.send_email(发送邮件) *************************
+2021-06-09 10:00:10,297 - Mario - emailer.py - [line:110] - INFO -> 连接邮箱成功～host:smtp.qq.com,port:465
+2021-06-09 10:00:11,140 - Mario - emailer.py - [line:118] - INFO -> 登陆邮箱成功～  登陆用户名：mikuya_9@qq.com
+2021-06-09 10:00:11,143 - Mario - emailer.py - [line:131] - INFO -> 正在关闭邮箱连接～
+2021-06-09 10:06:19,330 - Mario - emailer.py - [line:32] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-09 10:06:19,330 - Mario - emailer.py - [line:46] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-09 10:06:19,330 - Mario - emailer.py - [line:89] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-09 10:06:19,331 - Mario - emailer.py - [line:96] - INFO -> 附件处理完成～
+2021-06-09 10:06:19,331 - Mario - emailer.py - [line:99] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-09 10:06:19,331 - Mario - emailer.py - [line:89] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-09 10:06:19,332 - Mario - emailer.py - [line:96] - INFO -> 附件处理完成～
+2021-06-09 10:06:19,333 - Mario - emailer.py - [line:99] - INFO -> ************************* Emailer.attach_handle(附件处理) *************************
+2021-06-09 10:06:19,333 - Mario - emailer.py - [line:80] - INFO -> 邮件内容组装完成～
+2021-06-09 10:06:19,333 - Mario - emailer.py - [line:81] - INFO -> ************************* Emailer.message_init(邮件内容处理) *************************
+2021-06-09 10:06:19,333 - Mario - emailer.py - [line:40] - INFO -> ************************* Emailer.__init__() *************************
+2021-06-09 10:06:19,333 - Mario - emailer.py - [line:106] - INFO -> ************************* Emailer.send_email(发送邮件) *************************
+2021-06-09 10:06:19,643 - Mario - emailer.py - [line:110] - INFO -> 连接邮箱成功～host:smtp.qq.com,port:465
+2021-06-09 10:06:19,776 - Mario - emailer.py - [line:118] - INFO -> 登陆邮箱成功～  登陆用户名：mikuya_9@qq.com
+2021-06-09 10:06:20,381 - Mario - emailer.py - [line:121] - INFO -> 获取发件人信息成功：mikuya_9@qq.com,获取收件人成功:zhongyun@gtmsh.com,xiangpengfei@gtmsh.com
+2021-06-09 10:06:20,381 - Mario - emailer.py - [line:122] - INFO -> 邮件发送成功～
+2021-06-09 10:06:20,382 - Mario - emailer.py - [line:131] - INFO -> 正在关闭邮箱连接～
+2021-06-09 10:06:20,382 - Mario - emailer.py - [line:132] - INFO -> ************************* Emailer.send_email(发送邮件) *************************

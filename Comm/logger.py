@@ -8,20 +8,18 @@
 import logging
 import os, time
 from logging.handlers import TimedRotatingFileHandler
-from Config.yamlReader import YamlReader
+from Config.yamlReader import log_cfg
 
 
 class Logger():
     # 项目基础目录
     _beseHome = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
     def __init__(self):
-        # 读取yaml文件的log配置
-        _yaml_file = YamlReader()
-        _yaml_log_data = _yaml_file.reader_yaml_datas('log')
+
         # 日志等级：log_level取过来是个字符串，没法直接用，通过eval执行后，就变成了logging定义的对象
-        _log_level = eval(_yaml_log_data['log_level'])
-        _log_path = _yaml_log_data['log_path']
-        _log_format = _yaml_log_data['log_format']
+        _log_level = eval(log_cfg['log_level'])
+        _log_path = log_cfg['log_path']
+        _log_format = log_cfg['log_format']
         # 定义日志文件存放路径
         _log_file = os.path.join(self._beseHome, _log_path, 'log.log')
         # 创建日志器

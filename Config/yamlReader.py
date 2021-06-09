@@ -28,9 +28,10 @@ class YamlReader():
         _item_config_data = self._yaml_result_datas[config_item]
         return _item_config_data
 
-
-if __name__ == '__main__':
-    yamler = YamlReader()
-    loger = yamler.reader_yaml_datas('log')
-    path = loger['log_path']
-    print(path)
+#将各配置读取出来，放在变量里面，后续其他文件直接引用这些变量
+config = YamlReader()
+sys_cfg = config.reader_yaml_datas('sys')
+log_cfg = config.reader_yaml_datas('log')
+tapd_cfg = config.reader_yaml_datas('tapd')
+smtp_cfg = config.reader_yaml_datas('smtp')
+email_cfg = config.reader_yaml_datas('email')

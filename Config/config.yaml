@@ -18,7 +18,7 @@ tapd:
 #邮件配置
 smtp:
   host: smtp.qq.com
-  prot: 465
+  port: 465
   user: mikuya_9@qq.com
   pwd: dnlofayaldvveahg
 
@@ -26,7 +26,7 @@ smtp:
 #收发件人
 email:
   sender: mikuya_9@qq.com
-  receivers:
-    -zhongyun@gtmsh.com
-    -xxx@gtmsh.com
+  receivers: zhongyun@gtmsh.com,xiangpengfei@gtmsh.com #多个收件人一定要用，分割，别看官方文档用list
+
+#谷歌浏览器optioner配置
 
