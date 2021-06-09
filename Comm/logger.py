@@ -14,8 +14,8 @@ from Config.yamlReader import log_cfg
 class Logger():
     # 项目基础目录
     _beseHome = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
-    def __init__(self):
 
+    def __init__(self):
         # 日志等级：log_level取过来是个字符串，没法直接用，通过eval执行后，就变成了logging定义的对象
         _log_level = eval(log_cfg['log_level'])
         _log_path = log_cfg['log_path']
@@ -37,15 +37,16 @@ class Logger():
             backupCount:日志备份数量(就是保留几个日志文件，起过这个数量，就把最早的删除掉，从而滚动删除)
         '''
         handler = TimedRotatingFileHandler(filename=_log_file, when='D', interval=1, backupCount=7)
-        #向日志文件打印日志
+        # 向日志文件打印日志
         handler.setLevel(_log_level)
         handler.setFormatter(formatter)
         self.logger.addHandler(handler)
-        #向控制台打印日志
+        # 向控制台打印日志
         console = logging.StreamHandler()
         console.setLevel(_log_level)
         console.setFormatter(formatter)
         self.logger.addHandler(console)
+
 
 if __name__ == '__main__':
     logger = Logger().logger

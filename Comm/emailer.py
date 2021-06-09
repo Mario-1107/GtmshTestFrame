@@ -6,7 +6,7 @@
 @describe：邮件发送模块:多个附件使用list[]
 """
 from Comm.logger import Logger
-from Config.yamlReader import email_cfg,smtp_cfg
+from Config.yamlReader import email_cfg, smtp_cfg
 import smtplib, os
 from email.header import Header
 from email.mime.text import MIMEText
@@ -38,6 +38,7 @@ class Email():
         self.message = MIMEMultipart()
         self.message_init()
         self.logger.info(("*" * 25) + " Emailer.__init__() " + ("*" * 25))
+
     def message_init(self):
         '''
         邮件内容处理
@@ -50,22 +51,22 @@ class Email():
         else:
             raise ValueError(f"无效的标题：{self.subject}，请输入正确的标题！")
             self.logger.error(f"无效的标题：{self.subject}，请输入正确的标题！")
-        #邮件发送人
+        # 邮件发送人
         self.message['Form'] = email_cfg['sender']
-        #邮件收件人
+        # 邮件收件人
         self.message['To'] = email_cfg['receivers']
-        #邮件正文信息
+        # 邮件正文信息
         if self.context:
-            self.message.attach(MIMEText(self.context,'html','utf-8'))
+            self.message.attach(MIMEText(self.context, 'html', 'utf-8'))
         else:
             raise ValueError(f"无效的正文：{self.context}，请输入正确的正文！")
             self.logger.error(f"无效的正文：{self.subject}，请输入正确的正文！")
-        #邮件附件
+        # 邮件附件
         if self.attachment:
             # isinstance() 函数来判断一个对象是否是一个已知的类型;判断是否为单个文件
             if isinstance(self.attachment, str):
                 self.attach_handle(self.attachment)
-            #判断是否为多个附件
+            # 判断是否为多个附件
             if isinstance(self.attachment, list):
                 count = 0
                 # 循环多个文件
@@ -80,7 +81,7 @@ class Email():
         self.logger.info('邮件内容组装完成～')
         self.logger.info(("*" * 25) + " Emailer.message_init(邮件内容处理) " + ("*" * 25))
 
-    def attach_handle(self,file):
+    def attach_handle(self, file):
         '''
         附件处理
         :param file:附件
@@ -131,12 +132,8 @@ class Email():
         self.logger.info(("*" * 25) + " Emailer.send_email(发送邮件) " + ("*" * 25))
         return result
 
+
 if __name__ == '__main__':
-    mail = Email('测试组第三周周报','第一次发送',attachment=['/Users/air/PycharmProjects/GtmshTestFrame/Config/config.yaml','/Users/air/PycharmProjects/GtmshTestFrame/Log/log.log'])
+    mail = Email('测试组第三周周报', '第一次发送', attachment=['/Users/air/PycharmProjects/GtmshTestFrame/Config/config.yaml',
+                                                  '/Users/air/PycharmProjects/GtmshTestFrame/Log/log.log'])
     send = mail.send_email()
-
-
-
-
-
-

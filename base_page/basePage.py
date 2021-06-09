@@ -16,7 +16,7 @@ _baseHome = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
 class BesePage():
 
-    def __init__(self,driver):
+    def __init__(self, driver):
         self.logger = Logger().logger
         self.driver = driver
         # 添加隐式等待（10S）
@@ -48,7 +48,6 @@ class BesePage():
         self.logger.info("查找元素：{}".format(locator))
         return self.driver.find_element(*locator)
 
-
     def click_element(self, locator):
         '''
         点击元素操作
@@ -65,7 +64,7 @@ class BesePage():
         :param txt:输入文本
         :return:none
         '''
-        self.logger.info("{}:元素输入内容：{}".format(locator,txt))
+        self.logger.info("{}:元素输入内容：{}".format(locator, txt))
         self.get_element(locator).send_keys(txt)
 
     def sleep(self, times=3):
@@ -95,7 +94,7 @@ class BesePage():
         self.logger.info("正在对{}元素进行清空内容操作～".format(locator))
         self.get_element(locator).clear()
 
-    def keyboard_keys(self,locator,keys):
+    def keyboard_keys(self, locator, keys):
         '''
         键盘按键操作
         :param locator: 定位器，元素定位（元祖类型：元素定位类型，元素定位方式）
@@ -114,34 +113,34 @@ class BesePage():
         '''
         if keys == 'END':
             self.get_element(locator).send_keys(Keys.END)
-            self.logger.info('正在对页面元素{locator}操作{keys}操作～'.format(locator,keys))
+            self.logger.info('正在对页面元素{locator}操作{keys}操作～'.format(locator, keys))
         elif keys == 'HOME':
             self.get_element(locator, doc).send_keys(Keys.HOME)
-            self.logger.info('正在对页面元素{locator}操作{keys}操作～'.format(locator,keys))
+            self.logger.info('正在对页面元素{locator}操作{keys}操作～'.format(locator, keys))
         elif keys == 'BACK_SPACE':
             self.get_element(locator, doc).send_keys(Keys.BACK_SPACE)
-            self.logger.info('正在对页面元素{locator}操作{keys}操作～'.format(locator,keys))
+            self.logger.info('正在对页面元素{locator}操作{keys}操作～'.format(locator, keys))
         elif keys == 'TAB':
             self.get_element(locator, doc).send_keys(Keys.TAB)
-            self.logger.info('正在对页面元素{locator}操作{keys}操作～'.format(locator,keys))
+            self.logger.info('正在对页面元素{locator}操作{keys}操作～'.format(locator, keys))
         elif keys == 'SHIFT':
             self.get_element(locator, doc).send_keys(Keys.SHIFT)
-            self.logger.info('正在对页面元素{locator}操作{keys}操作～'.format(locator,keys))
+            self.logger.info('正在对页面元素{locator}操作{keys}操作～'.format(locator, keys))
         elif keys == 'ALT':
             self.get_element(locator, doc).send_keys(Keys.ALT)
-            self.logger.info('正在对页面元素{locator}操作{keys}操作～'.format(locator,keys))
+            self.logger.info('正在对页面元素{locator}操作{keys}操作～'.format(locator, keys))
         elif keys == 'SPACE':
             self.get_element(locator, doc).send_keys(Keys.SPACE)
-            self.logger.info('正在对页面元素{locator}操作{keys}操作～'.format(locator,keys))
+            self.logger.info('正在对页面元素{locator}操作{keys}操作～'.format(locator, keys))
         elif keys == 'PAGE_UP':
             self.get_element(locator, doc).send_keys(Keys.PAGE_UP)
-            self.logger.info('正在对页面元素{locator}操作{keys}操作～'.format(locator,keys))
+            self.logger.info('正在对页面元素{locator}操作{keys}操作～'.format(locator, keys))
         elif keys == 'PAGE_DOWN':
             self.get_element(locator, doc).send_keys(Keys.PAGE_DOWN)
-            self.logger.info('正在对页面元素{locator}操作{keys}操作～'.format(locator,keys))
+            self.logger.info('正在对页面元素{locator}操作{keys}操作～'.format(locator, keys))
         elif keys == 'F12':
             self.get_element(locator, doc).send_keys(Keys.F12)
-            self.logger.info('正在对页面元素{locator}操作{keys}操作～'.format(locator,keys))
+            self.logger.info('正在对页面元素{locator}操作{keys}操作～'.format(locator, keys))
         elif keys == 'COMMAND':
             self.get_element(locator, doc).send_keys(Keys.COMMAND)
-            self.logger.info('正在对页面元素{locator}操作{keys}操作～'.format(locator,keys))
+            self.logger.info('正在对页面元素{locator}操作{keys}操作～'.format(locator, keys))
