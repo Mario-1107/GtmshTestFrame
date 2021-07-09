@@ -3,6 +3,7 @@ sys:
   km_sit_url: http://km-test.gtmsh.com/WX_Food_Tanyu/
   km_prod_url: http://wxapi.gtmsh.com/
   oa_sit_url: https://bk-test.gtmsh.com/admin/welcome
+  api_sit_url: https://api-test.gtmsh.com
 
 #日志配置
 log:
