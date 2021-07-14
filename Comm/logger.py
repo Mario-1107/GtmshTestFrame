@@ -1,7 +1,7 @@
 # -*- coding+: utf-8 -*-
 """
 @author:Kirito
-@file:logger.py
+@file:logger_test.py
 @time:2021/06/08
 @describe：日志封装
 """
@@ -36,16 +36,17 @@ class Logger():
             interval:间隔(就是几个when切割一次。when是W，interval是3的话就代表3周切割一次)
             backupCount:日志备份数量(就是保留几个日志文件，起过这个数量，就把最早的删除掉，从而滚动删除)
         '''
-        handler = TimedRotatingFileHandler(filename=_log_file, when='D', interval=1, backupCount=7)
-        # 向日志文件打印日志
-        handler.setLevel(_log_level)
-        handler.setFormatter(formatter)
-        self.logger.addHandler(handler)
-        # 向控制台打印日志
-        console = logging.StreamHandler()
-        console.setLevel(_log_level)
-        console.setFormatter(formatter)
-        self.logger.addHandler(console)
+        if not self.logger.handlers:
+            handler = TimedRotatingFileHandler(filename=_log_file, when='D', interval=1, backupCount=30)
+            # 向日志文件打印日志
+            handler.setLevel(_log_level)
+            handler.setFormatter(formatter)
+            self.logger.addHandler(handler)
+            # 向控制台打印日志
+            console = logging.StreamHandler()
+            console.setLevel(_log_level)
+            console.setFormatter(formatter)
+            self.logger.addHandler(console)
 
 
 if __name__ == '__main__':

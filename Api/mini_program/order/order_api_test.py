@@ -10,19 +10,19 @@ from Comm.tool import Tool
 from Config.yamlReader import sys_cfg
 import requests,redis
 
-
+logger = Logger().logger
 class Order_Api_Test():
+    tool = Tool()
     # 当前13位时间戳
-    timestamp = Tool.get_timestamp()
+    timestamp = tool.get_timestamp()
     # 连接本地redis
     conn_redis = redis.Redis(host='localhost', port='6379', db=1)
-
     def __init__(self, token):
         '''
         构造函数
         :param token: 接口操作token
         '''
-        self.logger = Logger().logger
+
         self.token = token
         self.headers = {
             'Connection': 'keep-alive',
@@ -48,12 +48,14 @@ class Order_Api_Test():
         self.tableCode = '13'
         # 用餐人数
         self.peopleNum = '3'
+        # URL前缀
+        self.urlPrefix = sys_cfg["api_sit_url"]
         # 订单号
         # try:
         #     self.orderNo = self.conn_redis.get('orderNo').decode('utf-8')
-        #     self.logger.info('获取redis订单号成功！orderNo：{}'.format(self.orderNo))
+        #     self.logger_test.info('获取redis订单号成功！orderNo：{}'.format(self.orderNo))
         # except redis.exceptions.ConnectionError as re:
-        #     self.logger.error('连接redis失败，错误：{}'.format(re))
+        #     self.logger_test.error('连接redis失败，错误：{}'.format(re))
 
     def cart_check_binding_table(self, latitude='22.50663', longitude='113.94088'):
         '''
@@ -65,10 +67,11 @@ class Order_Api_Test():
         :param tableCode:桌号编码
         :return:接口响应内容
         '''
-        url = sys_cfg["api_sit_url"] + '/dianxin-mp/v1/v2/cart/check-binding-table'
+        url = self.urlPrefix + '/dianxin-mp/v1/v2/cart/check-binding-table'
         payload = '{"latitude":"' + latitude + '","longitude":"' + longitude + '","brandCode":"' + self.brandCode + '","cartOrderType":1,"shopCode":"' + self.shopCode + '","tableCode":"' + self.tableCode + '","tableName":"' + self.tableCode + '","businessType":1}'
         response = requests.request("POST", url, headers=self.headers, data=payload)
-        self.logger.info('进入{2}台位成功！\n请求参数:{0};\n响应内容：{1}'.format(payload, response.text, self.tableCode))
+        logger.info('进入{2}台位成功！\n请求参数:{0};\n响应内容：{1}'.format(payload, response.text, self.tableCode))
+
         return response.text
 
     def save_people_number(self):
@@ -76,10 +79,10 @@ class Order_Api_Test():
         用餐人数和茶水类型
         :return:接口响应内容
         '''
-        url = sys_cfg["api_sit_url"] + '/dianxin-mp/v1/v2/cart/save-people-number'
+        url = self.urlPrefix + '/dianxin-mp/v1/v2/cart/save-people-number'
         payload = '{"businessType":1,"savePage":true,"brandCode":"' + self.brandCode + '","cartOrderType":1,"shopCode":"' + self.shopCode + '","tableCode":"' + self.tableCode + '","tableName":"' + self.tableCode + '","peopleNum":"' + self.peopleNum + '","teaWaterRequest":{"foodCode":"F1000009771","foodNum":1}}'
         response = requests.request("POST", url, headers=self.headers, data=payload)
-        self.logger.info('保存茶位人数成功！\n请求参数:{0};\n响应内容：{1}'.format(payload, response.text))
+        logger.info('保存茶位人数成功！\n请求参数:{0};\n响应内容：{1}'.format(payload, response.text))
         return response.text
 
     def cart_add(self):
@@ -87,7 +90,7 @@ class Order_Api_Test():
         添加菜品
         :return:接口响应内容
         '''
-        url = sys_cfg["api_sit_url"] + '/dianxin-mp/v1/v2/cart/add'
+        url = self.urlPrefix + '/dianxin-mp/v1/v2/cart/add'
         # 单品
         payload = '{"businessType":1,"brandCode":"' + self.brandCode + '","cartOrderType":1,"shopCode":"' + self.shopCode + '","tableCode":"' + self.tableCode + '","tableName":"' + self.tableCode + '","foodCategoryCode":"F1000029630","foodCode":"F1000009791","foodNum":1}'
         # 套餐
@@ -95,11 +98,11 @@ class Order_Api_Test():
         # 做法商品
         payload3 = '{"businessType":1,"brandCode":"' + self.brandCode + '","cartOrderType":1,"shopCode":"' + self.shopCode + '","tableCode":"' + self.tableCode + '","tableName":"' + self.tableCode + '","foodCategoryCode":"F1000017272","foodCode":"F1000009888","foodNum":1,"madeRequests":[{"madeName":"少冰别名","subjectMadeKey":"473_506"}]}'
         response = requests.request("POST", url, headers=self.headers, data=payload)
-        self.logger.info('单品加入购物车成功！\n请求参数:{0};\n响应内容：{1}'.format(payload, response.text))
+        logger.info('单品加入购物车成功！\n请求参数:{0};\n响应内容：{1}'.format(payload, response.text))
         response2 = requests.request("POST", url, headers=self.headers, data=payload2.encode("utf-8"))
-        self.logger.info('套餐加入购物车成功！\n请求参数:{0};\n响应内容：{1}'.format(payload2, response2.text))
+        logger.info('套餐加入购物车成功！\n请求参数:{0};\n响应内容：{1}'.format(payload2, response2.text))
         response3 = requests.request("POST", url, headers=self.headers, data=payload3.encode("utf-8"))
-        self.logger.info('含做法商品加入购物车成功！\n请求参数:{0};\n响应内容：{1}'.format(payload3, response3.text))
+        logger.info('含做法商品加入购物车成功！\n请求参数:{0};\n响应内容：{1}'.format(payload3, response3.text))
         return response.text, response2.text, response3.text
 
     def sale_order_submit(self):
@@ -107,16 +110,18 @@ class Order_Api_Test():
         提交订单
         :return:接口响应内容
         '''
-        url = sys_cfg["api_sit_url"] + "/dianxin-mp/v1/v2/sale-order/submit"
+        url = self.urlPrefix + "/dianxin-mp/v1/v2/sale-order/submit"
         payload = '{"cartOrderType":1,"shopCode":"'+self.shopCode+'","tableCode":"'+self.tableCode+'"}'
         response = requests.request("POST", url, headers=self.headers, data=payload)
-        self.orderNo = Tool.get_json_result(response, '$.data.orderNo')[0]
-        self.logger.info('下单成功，订单号为:{2};\n请求参数:{0};\n响应内容：{1}'.format(payload, response.text, self.orderNo))
+        print(response.headers)
+        print(response.text)
+        self.orderNo = self.tool.get_json_result(response, '$.data.orderNo')[0]
+        logger.info('下单成功，订单号为:{2};\n请求参数:{0};\n响应内容：{1}'.format(payload, response.text, self.orderNo))
         try:
             self.conn_redis.set('orderNo',self.orderNo)
-            self.logger.info('订单号插入redis成功！插入订单号为：{};'.format(self.orderNo))
+            logger.info('订单号插入redis成功！插入订单号为：{};'.format(self.orderNo))
         except:
-            self.logger.error('订单号插入redis失败')
+            logger.error('订单号插入redis失败')
         return response.text
 
     def sale_order_detail(self):
@@ -124,10 +129,10 @@ class Order_Api_Test():
         订单详情
         :return:接口响应内容
         '''
-        url = sys_cfg["api_sit_url"] + '/dianxin-mp/v1/v2/sale-order/detail'
+        url = self.urlPrefix + '/dianxin-mp/v1/v2/sale-order/detail'
         payload = '{"orderNo":"'+self.orderNo+'","orderSource":"local"}'
         response = requests.request("POST", url, headers=self.headers, data=payload)
-        self.logger.info('获取订单详情成功！\n请求参数:{0};\n响应内容：{1}'.format(payload, response.text))
+        logger.info('获取订单详情成功！\n请求参数:{0};\n响应内容：{1}'.format(payload, response.text))
         return response.text
 
     def shop_table_check(self):
@@ -135,16 +140,18 @@ class Order_Api_Test():
         门店台位订单检查
         :return:接口响应内容
         '''
-        url = sys_cfg["api_sit_url"] + '/dianxin-mp/v1/v2/sale-order/shop/table/check'
+        url = self.urlPrefix + '/dianxin-mp/v1/v2/sale-order/shop/table/check'
         payload = '{"tableNo":"'+self.tableCode+'","tableName":"'+self.tableCode+'","shopCode":"'+self.shopCode+'"}'
         response = requests.request("POST", url, headers=self.headers, data=payload)
-        self.orderNo = Tool.get_json_result(response, '$.data.orderNo')[0]
-        self.logger.info('获取门店台位订单成功！\n请求参数:{0};\n响应内容：{1}'.format(payload, response.text))
+        print(response.text)
+        print(response.headers)
+        self.orderNo = self.tool.get_json_result(response, '$.data.orderNo')[0]
+        logger.info('获取门店台位订单成功！\n请求参数:{0};\n响应内容：{1}'.format(payload, response.text))
         try:
             self.conn_redis.set('orderNo',self.orderNo)
-            self.logger.info('订单号插入redis成功！插入订单号为：{};'.format(self.orderNo))
+            logger.info('订单号插入redis成功！插入订单号为：{};'.format(self.orderNo))
         except:
-            self.logger.error('订单号插入redis失败')
+            logger.error('订单号插入redis失败')
         return response.text
 
     def cart_addFood(self):
@@ -152,10 +159,10 @@ class Order_Api_Test():
         台位有订单加菜
         :return: 接口响应内容
         '''
-        url = sys_cfg["api_sit_url"] + '/dianxin-mp/v1/v2/cart/addFood'
+        url = self.urlPrefix + '/dianxin-mp/v1/v2/cart/addFood'
         payload = '{"businessType":1,"cartOrderType":1,"orderNo":"'+self.orderNo+'","shopCode":"'+self.shopCode+'","tableCode":"'+self.tableCode+'"}'
         response = requests.request("POST", url, headers=self.headers, data=payload)
-        self.logger.info('点击「加菜」成功！\n请求参数:{0};\n响应内容：{1}'.format(payload, response.text))
+        logger.info('点击「加菜」成功！\n请求参数:{0};\n响应内容：{1}'.format(payload, response.text))
         return response.text
 
     def cart_list(self):
@@ -163,24 +170,42 @@ class Order_Api_Test():
         购物车列表
         :return:接口响应内容
         '''
-        url = sys_cfg["api_sit_url"] + '/dianxin-mp/v1/v2/cart/list'
+        url = self.urlPrefix + '/dianxin-mp/v1/v2/cart/list'
         payload = '{"businessType":1,"brandCode":"'+self.brandCode+'","cartOrderType":1,"shopCode":"'+self.shopCode+'","tableCode":"'+self.tableCode+'","tableName":"'+self.tableCode+'"}'
         response = requests.request("POST", url, headers=self.headers, data=payload)
-        self.logger.info('获取购物车列表成功！\n请求参数:{0};\n响应内容：{1}'.format(payload, response.text))
+        logger.info('获取购物车列表成功！\n请求参数:{0};\n响应内容：{1}'.format(payload, response.text))
         return response.text
 
+    def test_1(self):
+        '''
+        线上开台下单
+        :return:
+        '''
+        self.cart_check_binding_table()
+        self.save_people_number()
+        self.cart_add()
+        self.sale_order_submit()
+        self.sale_order_detail()
 
+    def test_2(self):
+        '''
+        台位存在订单扫码加菜
+        :return:
+        '''
+        self.shop_table_check()
+        self.cart_addFood()
+        self.cart_add()
+        self.sale_order_submit()
+        self.sale_order_detail()
 
 
 if __name__ == '__main__':
-    c = Order_Api_Test('17405339-f7a3-48d6-ba24-bc0a85fe21a4')
-    c.cart_check_binding_table()
-    c.save_people_number()
-    c.cart_add()
-    c.sale_order_submit()
-    c.sale_order_detail()
-    c.shop_table_check()
-    c.cart_addFood()
-    c.cart_add()
-    c.sale_order_submit()
-    c.sale_order_detail()
+    #220bc741-cb9d-4a41-b14f-17ee36c6d2fb --唐琦
+    #ecc172c1-6c1d-43ed-8553-41073185eddf --惠敏
+    #c24824db-e005-4a10-84e3-232068a8f09a --猪皮
+
+    test = Order_Api_Test('c24824db-e005-4a10-84e3-232068a8f09a')
+    test.test_1()
+    #test.test_2()
+    # test1 = Order_Api_Test('c24824db-e005-4a10-84e3-232068a8f09a')
+    # test1.test_1()

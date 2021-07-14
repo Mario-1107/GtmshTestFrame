@@ -6,8 +6,8 @@
 @describe：工具类
 """
 import random, string,time,json,jsonpath
-
-
+from Comm.logger import Logger
+logger = Logger().logger
 class Tool():
 
     @staticmethod
@@ -18,6 +18,7 @@ class Tool():
         :return:返回随机数
         '''
         randoms = ''.join(random.sample(string.digits + string.ascii_letters, length))
+        logger.info('生成{}位随机数成功～随机数：{}'.format(length,randoms))
         return randoms
 
     @staticmethod
@@ -31,7 +32,11 @@ class Tool():
         # 先把传入的值转换为json格式
         responses = json.loads(response.content)
         # 将需要提取的值提取出来
-        result = jsonpath.jsonpath(responses, "%s" % value)
+        result = jsonpath.jsonpath(responses, "{}".format(value))
+        if result != False:
+            logger.info('提取指定内容成功～提取值：{}'.format(result))
+        else:
+            logger.error('提取指定内容失败')
         return result
 
     @staticmethod
@@ -86,6 +91,7 @@ class Tool():
         :return:
         '''
         timestamp = str(int((time.time() * 1000)))
+        logger.info('生成当前时间戳成功～时间戳：{}'.format(timestamp))
         return timestamp
 
 

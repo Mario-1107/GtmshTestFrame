@@ -33,6 +33,8 @@ class Apitest():
 
     def __init__(self):
         self.logger = Logger().logger
+        # URL前缀
+        self.urlPrefix = sys_cfg["api_sit_url"]
         # token
         token = self.login()
         # 头部请求含token
@@ -62,7 +64,8 @@ class Apitest():
             self.logger.info('获取redis会员号成功！customerId：{}；'.format(self.customerId))
         except redis.exceptions.ConnectionError as re:
             self.logger.error('连接redis失败，错误：{}；'.format(re))
-
+        # 桌号编码
+        self.tableCode = '13'
 
 
     def login(self,password='12345',shortNo='100008',loginMac='0A:00:27:00:00:16'):
@@ -73,7 +76,7 @@ class Apitest():
         :param loginMac: 设备Mac地址
         :return:token
         '''
-        url = sys_cfg["api_sit_url"] + "/catering-pos-api/v1/auth/login"
+        url = self.urlPrefix + "/catering-pos-api/v1/auth/login"
         payload = '{"password":"'+password+'","shortNo":"'+shortNo+'","loginMac":"'+loginMac+'"}'
         response = requests.request("POST", url, headers=self.headers, data=payload)
         code = Tool.get_json_result(response, '$.code')
@@ -114,11 +117,11 @@ class Apitest():
         台位订单详情
         :return:接口响应内容
         '''
-        url = sys_cfg["api_sit_url"] + "/catering-pos-api/v1/order/detail"
+        url = self.urlPrefix + "/catering-pos-api/v1/order/detail"
         payload = '{"orderNo":"'+self.orderNo+'"}'
         response = requests.request("POST", url, headers=self.headers_token, data=payload)
         # 订单菜品唯一编码
-        self.orderFoodId = Tool.get_json_result(response,'$.data..orderFoodId')[0]
+        self.orderFoodId = Tool.get_json_result(response,'$.data..orderFoodId')
         self.logger.info('获取台位订单成功！\n请求参数:{0};\n响应内容：{1}；'.format(payload, response.text))
         return  response.text
 
@@ -127,7 +130,7 @@ class Apitest():
         堂食正向订单详情
         :return:接口响应内容
         '''
-        url = sys_cfg["api_sit_url"] + "/catering-pos-api/v1/order/summary/canteen/detail"
+        url = self.urlPrefix + "/catering-pos-api/v1/order/summary/canteen/detail"
         payload = '{"orderNo":"'+self.orderNo+'","customerId":"'+self.customerId+'"}'
         response = requests.request("POST", url, headers=self.headers_token, data=payload)
         self.logger.info('获取堂食正向订单详情成功！\n请求参数:{0};\n响应内容：{1}；'.format(payload, response.text))
@@ -138,7 +141,7 @@ class Apitest():
         订单支付详情
         :return:接口响应内容
         '''
-        url = sys_cfg["api_sit_url"] + "/catering-pos-api/v1/pay/common/order-pay/detail"
+        url = self.urlPrefix + "/catering-pos-api/v1/pay/common/order-pay/detail"
         payload = '{"orderNo":"'+self.orderNo+'"}'
         response = requests.request("POST", url, headers=self.headers_token, data=payload)
         self.needPayAmount = str(Tool.get_json_result(response,'$.data.needPayAmount')[0])
@@ -150,7 +153,7 @@ class Apitest():
         现金支付
         :return:接口响应内容
         '''
-        url = sys_cfg["api_sit_url"] + "/catering-pos-api/v1/pay/cash/pay"
+        url = self.urlPrefix + "/catering-pos-api/v1/pay/cash/pay"
         payload = '{"orderNo":"'+self.orderNo+'","payAmount":"'+self.needPayAmount+'","payModeId":131}'
         response = requests.request("POST", url, headers=self.headers_token, data=payload)
         self.logger.info('现金支付中！支付金额为：{2};\n请求参数:{0};\n响应内容：{1}；'.format(payload, response.text,self.needPayAmount))
@@ -161,7 +164,7 @@ class Apitest():
         确认结账
         :return:接口响应内容
         '''
-        url = sys_cfg["api_sit_url"] + "/catering-pos-api/v1/order/settlement/confirm-checkout"
+        url = self.urlPrefix + "/catering-pos-api/v1/order/settlement/confirm-checkout"
         payload = '{"orderNo":"' + self.orderNo + '"}'
         response = requests.request("POST", url, headers=self.headers_token, data=payload)
         vipno = Tool.get_json_result(response,'$.data.cardNo')
@@ -174,8 +177,8 @@ class Apitest():
         菜品赠送
         :return:接口响应内容
         '''
-        url = sys_cfg["api_sit_url"] + "/catering-pos-api/v1/order/food/presented"
-        payload = '{"count":1,"orderItemId":"'+self.orderFoodId+'","orderNo":"'+self.orderNo+'","reason":"大队长礼物","tableCode":"104"}'
+        url = self.urlPrefix + "/catering-pos-api/v1/order/food/presented"
+        payload = '{"count":1,"orderItemId":"'+self.orderFoodId[0]+'","orderNo":"'+self.orderNo+'","reason":"大队长礼物","tableCode":"'+self.tableCode+'"}'
         response = requests.request("POST", url, headers=self.headers_token, data=payload.encode('utf-8'))
         self.logger.info('菜品赠送中！\n请求参数:{0};\n响应内容：{1}；'.format(payload, response.text))
         return response.text
@@ -185,14 +188,118 @@ class Apitest():
         取消菜品赠送
         :return:接口响应内容
         '''
-        url = sys_cfg["api_sit_url"] + "/catering-pos-api/v1/order/food/cancel-presented"
-        payload = '{"orderFoodId":"' + self.orderFoodId + '","orderNo":"' + self.orderNo + '","tableCode":"13"}'
+        url = self.urlPrefix + "/catering-pos-api/v1/order/food/cancel-presented"
+        payload = '{"orderFoodId":"' + self.orderFoodId[0] + '","orderNo":"' + self.orderNo + '","tableCode":"'+self.tableCode+'"}'
         response = requests.request("POST", url, headers=self.headers_token, data=payload.encode('utf-8'))
         self.logger.info('菜品取消赠送！\n请求参数:{0};\n响应内容：{1}；'.format(payload, response.text))
         return response.text
 
+    def order_food_refund(self):
+        '''
+        菜品退品
+        :return: 接口响应内容
+        '''
+        url = self.urlPrefix + "/catering-pos-api/v1/order/food/refund"
+        payload = '{"count":1,"orderItemId":"'+self.orderFoodId[1]+'","orderNo":"'+self.orderNo+'","reason":"承诺三","tableCode":"'+self.tableCode+'"}'
+        response = requests.request("POST", url, headers=self.headers_token, data=payload.encode('utf-8'))
+        self.logger.info('菜品退品中！\n请求参数:{0};\n响应内容：{1}；'.format(payload, response.text))
+        return response.text
+
+    def order_food_cancel_refund(self):
+        '''
+        取消退品
+        :return:接口响应内容
+        '''
+        url = self.urlPrefix + "/catering-pos-api/v1/order/food/cancel-refund"
+        payload = '{"orderFoodId":"'+self.orderFoodId[1]+'","orderNo":"'+self.orderNo+'","tableCode":"'+self.tableCode+'"}}'
+        response = requests.request("POST", url, headers=self.headers_token, data=payload.encode('utf-8'))
+        self.logger.info('退品取消中！\n请求参数:{0};\n响应内容：{1}；'.format(payload, response.text))
+        return response.text
+
+    def order_change_people(self):
+        '''
+        修改台位人数
+        :return:接口响应内容
+        '''
+        url = self.urlPrefix + "/catering-pos-api/v1/order/change/people"
+        payload = '{"tableCode":"'+self.tableCode+'","peopleNum":"8","orderNo":"'+self.orderNo+'"}'
+        response = requests.request("POST", url, headers=self.headers_token, data=payload.encode('utf-8'))
+        self.logger.info('修改台位人数中！\n请求参数:{0};\n响应内容：{1}；'.format(payload, response.text))
+        return response.text
+
+    def order_vip_bind(self):
+        '''
+        会员绑定
+        :return:接口响应内容
+        '''
+        url = self.urlPrefix + "/catering-pos-api/v1/order/vip/bind"
+        payload = '{"cardNo":"660000000151","customerId":1000348986,"orderNo":"'+self.orderNo+'","tableCode":"'+self.tableCode+'"}'
+        response = requests.request("POST", url, headers=self.headers_token, data=payload.encode('utf-8'))
+        self.logger.info('会员绑定中！\n请求参数:{0};\n响应内容：{1}；'.format(payload, response.text))
+        return response.text
+
+    def table_open(self):
+        '''
+        开台
+        :return:接口响应内容
+        '''
+        url = self.urlPrefix + "/catering-pos-api/v1/table/open"
+        payload = '{"tableCode":"'+self.tableCode+'","peopleNum":"5","teaCode":"F1000009805"}'
+        response = requests.request("POST", url, headers=self.headers_token, data=payload.encode('utf-8'))
+        self.orderNo = Tool.get_json_result(response,'$.data.orderNo')[0]
+        self.logger.info('台位开台中！\n请求参数:{0};\n响应内容：{1}；'.format(payload, response.text))
+        try:
+            self.conn_redis.set('orderNo',self.orderNo)
+            self.logger.info('订单号插入redis成功！插入订单号为：{};'.format(self.orderNo))
+        except:
+            self.logger.error('订单号插入redis失败')
+        return response.text
+
+    def table_repeal(self):
+        '''
+        退台
+        :return:接口响应内容
+        '''
+        url = self.urlPrefix + "/catering-pos-api/v1/table/repeal"
+        payload = '{"reasonCode":"back-01","tableCode":"' + self.tableCode + '"}'
+        response = requests.request("POST", url, headers=self.headers_token, data=payload.encode('utf-8'))
+        self.logger.info('台位退台中！\n请求参数:{0};\n响应内容：{1}；'.format(payload, response.text))
+        return response.text
+
+    def order_submit(self):
+        '''
+        下单
+        :return:接口响应内容
+        '''
+        url = self.urlPrefix + "/catering-pos-api/v1/order/submit"
+        payload = '{"orderNo":"'+self.orderNo+'","submitItemList":[{"fixingsGroupFoodList":[],"foodCode":"F1000009742","foodMadeList":[{"madeCode":"502","madeName":"免薄荷叶","madeType":"08","raisePrice":"0.00","subjectMadeKey":"350_502"}],"foodNum":3,"foodType":1,"mealFoodList":[]},{"fixingsGroupFoodList":[],"foodCode":"F1000017977","foodMadeList":[],"foodNum":1,"foodType":1,"mealFoodList":[]}],"tableCode":"'+self.tableCode+'","tableName":"'+self.tableCode+'"}'
+        response = requests.request("POST", url, headers=self.headers_token, data=payload.encode('utf-8'))
+        self.logger.info('订单提交中！\n请求参数:{0};\n响应内容：{1}；'.format(payload, response.text))
+        return response.text
+
+    def test_1(self):
+        '''
+        台位有订单结台
+        :return:
+        '''
+        self.order_detail()#订单详情
+        self.pay_common_order_pay_detail()#订单支付详情
+        self.pay_cash_pay()#现金支付
+        self.order_settlement_confirm_checkout()#结台
+
+    def test_2(self):
+        '''
+        pos开台并结账
+        :return:
+        '''
+        self.table_open()  # pos开台
+        self.order_detail()  # 订单详情
+        self.order_submit()  # 提交订单
+        self.order_vip_bind() #绑定会员
+        self.pay_common_order_pay_detail()  # 订单支付详情
+        self.pay_cash_pay()  # 现金支付
+        self.order_settlement_confirm_checkout()  # 结台
+
 if __name__ == '__main__':
-    c = Apitest()
-    c.order_detail()
-    c.order_food_presented()
-    c.order_food_cancel_presented()
+    test = Apitest()
+    test.test_1()
